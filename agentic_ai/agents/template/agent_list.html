@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des agents</title>
+</head>
+<body>
+    <h1>Liste des agents</h1>
+    <ul>
+    {% for agent in agents %}
+        <li>{{ agent.name }} — {{ agent.description }}</li>
+    {% empty %}
+        <li>Aucun agent trouvé.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+
+

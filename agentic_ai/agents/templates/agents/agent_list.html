@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Agents</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(to right, #d3cce3, #e9e4f0);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #4b0082;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            margin-bottom: 12px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .agent-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .agent-description {
+            font-style: italic;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background-color: #6a0dad;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #4b0082;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des Agents</h1>
+
+        <ul>
+            {% for agent in agents %}
+                <li>
+                    <div>
+                        <div class="agent-name">{{ agent.name }}</div>
+                        <div class="agent-description">{{ agent.description }}</div>
+                    </div>
+                </li>
+            {% empty %}
+                <li>Aucun agent trouvé.</li>
+            {% endfor %}
+        </ul>
+        
+
+        <a href="{% url 'agent_create' %}" class="btn">Créer un nouvel agent</a>
+    </div>
+</body>
+</html>

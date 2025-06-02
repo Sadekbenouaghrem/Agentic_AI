@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détail de la Tâche IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="max-w-4xl mx-auto py-10 px-6">
+        <!-- Header -->
+        <div class="mb-6">
+            <h1 class="text-3xl font-bold text-indigo-700">{{ task.title }}</h1>
+            <p class="text-sm text-gray-500 mt-1">Créée le {{ task.created_at|date:"d/m/Y H:i" }}</p>
+        </div>
+
+        <!-- Task Details -->
+        <div class="bg-white rounded-lg shadow p-6 mb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <p class="text-gray-500">Statut</p>
+                    <p class="text-lg font-semibold">{{ task.status }}</p>
+                </div>
+                <div>
+                    <p class="text-gray-500">Agent</p>
+                    <p class="text-lg font-semibold">{{ task.agent.name }}</p>
+                </div>
+                <div class="sm:col-span-2">
+                    <p class="text-gray-500">Description</p>
+                    <p class="mt-1 text-gray-700">{{ task.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactions -->
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-indigo-600 mb-4">Historique des interactions</h2>
+            <ul class="space-y-4">
+                {% for interaction in interactions %}
+                    <li class="border-l-4 border-indigo-500 bg-gray-50 p-4 rounded-md shadow-sm">
+                        <p class="text-sm text-gray-500">{{ interaction.timestamp|date:"d/m/Y H:i:s" }}</p>
+                        <p class="mt-1 text-gray-700">{{ interaction.response }}</p>
+                    </li>
+                {% empty %}
+                    <li class="text-gray-600 italic">Aucune interaction enregistrée.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Back Link -->
+        <div class="mt-6">
+            <a href="{% url 'ai_task_list' %}" class="inline-block text-indigo-600 hover:underline">&larr; Retour à la liste des tâches IA</a>
+        </div>
+    </div>
+
+</body>
+</html>
